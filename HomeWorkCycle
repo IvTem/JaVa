@@ -1,0 +1,41 @@
+public class HomeWorkCycle1 {
+    public static void main(String[] args) {
+        //задание 1 - вывести все четные числа от 1 до миллиона
+        System.out.println("задание1 - вывести все четные числа от 1 до миллиона");
+        int counter = 1;
+        while (counter < 1000001){
+            int remain = counter % 2;
+            if (remain == 0){
+                System.out.println(counter);
+            }
+            counter++;
+        }
+        //задание 2 вывести все нечетные числа от 500000 до 100000
+        System.out.println("вывести все нечетные числа от 500000 до 100000");
+        int counter1 = 500000;
+        while (counter1 > 100000){
+            int remain1 = counter1 % 2;
+            if (remain1 != 0){
+                System.out.println(counter1);
+        }
+            counter1 --;
+        }
+        //задание 3 - вывести все числа до миллиона, которые делятся на 3
+        System.out.println("задание3 - вывести все числа до миллиона, которые делятся на 3");
+        int counter2 = 0;
+        while (counter2 <= 1000000){
+            int remain2 = counter2 % 3;
+            if (remain2 == 0){
+                System.out.println(counter2);
+            }
+            counter2++;
+        }
+        //задание 4 - вывести все отрицательные числа, квадрат которых меньше 100000
+        System.out.println("задание4 - вывести все отрицательные числа, квадрат которых меньше 100000");
+        int counter3 =-1;
+        while (counter3 * counter3<100000){
+            System.out.println(counter3);
+            counter3--;
+        }
+    }
+}
