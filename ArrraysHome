@@ -1,0 +1,58 @@
+import java.util.Scanner;
+public class Arrays {
+    public static void main(String[] args) {
+        String[] q = new String[5];
+        q[0] = "Вы зашли в темную комнату. В темноте слышен пугающий шорох. Ваши действия?";
+        q[1] = "Выйти из комнаты";
+        q[2] = "Включить свет";
+        q[3] = "Шагнуть навстречу зловещему звуку";
+        q[4] = "Крикнуть что есть сил 'уходи отсюда!'";
+        Scanner superscanner = new Scanner(System.in);
+        boolean gameOver = false; // флаг завершения
+        int counter = 0;       // счетчик жизней
+        int counterLight = 0;  // счетчик света
+        int countLightMax = 5; // макс. кол-во ключений света для победы 
+        int countMax = 10;     // макс. кол-во жизней
+        while (gameOver != true) {
+            System.out.println("___________Всего жизней: " + (countMax-counter)+" ___________");
+            System.out.println(q[0]); // выводится вопрос
+            for (int i = 1; i < 5; i++) {
+                System.out.println(i + ": " + q[i]); // все варианты ответа выводятся
+            }
+            System.out.print("Ваши действия: ");
+            int answer = superscanner.nextInt(); // ответ пользователя
+            if (counter <= countMax ){
+                if (answer == 1) {
+                    System.out.println("Разумно и безопасно. Вы остались целы, хоть и не узнали, что это было");
+                    //gameOver = true; // закончить игру. Как вариант - вместо этого написать break.
+                }
+                if (answer == 2) {
+                    q[0] = "Выключатель предательски треснул. Свет не включился, пугающий шорох все ближе";
+                    q[2] = "Еще раз попробовать включить свет {для самых одаренных}";
+                    counterLight = counterLight + 1;
+                }
+                if (answer == 3 || answer == 4) {
+                    if (q[0].endsWith("громче")) { // если вопрос заканчивается на "..громче"
+                        q[0] = q[0] + " и еще громче"; // добавим к нему и еще громче
+                    } else {
+                        q[0] = "Звук становится громче и громче";
+                    }
+                }
+            }
+            counter=counter+1;
+            if (counterLight == countLightMax){
+                System.out.println("_____________________________");
+                System.out.println("Свет включился.И на встречу вышел просто мааааленький котенок:)!");
+                System.out.println("Вы победили!");
+                gameOver = true;
+            }
+            if (counter >= countMax && counterLight != countLightMax ){
+                System.out.println("____________________________");
+                System.out.println("У вас закончились жизни.");
+                System.out.println("Вас схватили ЧЕЕЕЕРТИИИ и СЬЕЛИ!!!!!");
+                System.out.println("Игра окончена!");
+                gameOver = true;
+            }
+        }
+    }
+}
