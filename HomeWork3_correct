@@ -1,0 +1,11 @@
+import java.util.Scanner;
+public class HomeWork3_correct{
+    public static void main(String[] args) {
+        Scanner myScan1 = new Scanner(System.in);
+        System.out.println("Введите число:");
+        double x = myScan1.nextDouble();
+        double y = (x*x*x/10);
+        int z = (int)(y % 7); // исправил тип данных
+        System.out.println("Остаток от деления выражения x^3/10 на 7 равно: " + z + " при x=" + x );
+    }
+}
