@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+// 1: добавить проверку, что можно ставить крестик/нолик в выбранную ячейку
+// 2: добавить проверку на то, что игра закончена - вывести, кто победил
+// 3: добавить проверку на ничью
+
+public class XoGame  {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        char[] gameField = new char[9];
+        boolean gameOver = false;
+        int counter = 0;
+        for (int i=0; i<9; i++) {
+            gameField[i] = ' ';
+        }
+        char currentTurn = 'X'; // кавычка - одинарная !
+        while (!gameOver) {
+            System.out.println(" 1   2   3");
+            for (int i = 0; i < 9; i++) {
+                System.out.print("[" + gameField[i] + "] ");
+                if ((i + 1) % 3 == 0) {
+                    System.out.println();
+                }
+            }
+            System.out.println(" 7   8   9");
+            System.out.println("Выберите, куда поставить " + currentTurn + " - цифра от 1 до 9: ");
+            int chosenCell = scanner.nextInt();
+            System.out.println("Игрок поставил " + currentTurn + " в клетку " + chosenCell);
+            int chosenIndex = chosenCell - 1;
+
+            if (gameField[chosenIndex]==' '){          // 1: добавить проверку, что можно ставить крестик/нолик в выбранную ячейку
+                counter++;
+                //System.out.println("Счетчик:" + counter);
+                gameField[chosenIndex] = currentTurn;
+                if ((gameField[0] == currentTurn && gameField[3] == currentTurn && gameField[6] == currentTurn) ||  // 2: добавить проверку на то, что игра закончена - вывести, кто победил
+                    (gameField[1] == currentTurn && gameField[4] == currentTurn && gameField[7] == currentTurn) ||
+                    (gameField[2] == currentTurn && gameField[5] == currentTurn && gameField[8] == currentTurn) ||
+                    (gameField[0] == currentTurn && gameField[4] == currentTurn && gameField[8] == currentTurn) ||
+                    (gameField[2] == currentTurn && gameField[4] == currentTurn && gameField[6] == currentTurn) ||
+                    (gameField[3] == currentTurn && gameField[4] == currentTurn && gameField[5] == currentTurn) ||
+                    (gameField[0] == currentTurn && gameField[1] == currentTurn && gameField[2] == currentTurn) ||
+                    (gameField[6] == currentTurn && gameField[7] == currentTurn && gameField[8] == currentTurn)) {
+                    System.out.println(" 1   2   3");
+                    for (int i = 0; i < 9; i++) {
+                        System.out.print("[" + gameField[i] + "] ");
+                        if ((i + 1) % 3 == 0) {
+                            System.out.println();
+                        }
+                    }
+                    System.out.println("Ура!Победил: " + currentTurn);
+                    gameOver = true;
+                }
+                else if (counter == 9){       // 3: добавить проверку на ничью
+                    for (int i = 0; i < 9; i++) {
+                        System.out.print("[" + gameField[i] + "] ");
+                        if ((i + 1) % 3 == 0) {
+                            System.out.println();
+                        }
+                    }
+                    System.out.println("Ничья!");
+                    gameOver = true;
+                }
+                if (currentTurn == 'X') {
+                    currentTurn = '0';
+                }
+                else { //если был нолик
+                        currentTurn = 'X';
+                }
+            }
+            else {
+                System.out.println("ЯЧЕЙКА ЗАНЯТА!");
+            }
+        }
+    }
+}
